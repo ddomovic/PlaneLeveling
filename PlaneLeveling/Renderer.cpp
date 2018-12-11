@@ -20,6 +20,7 @@ Plane* Renderer::get_plane() {
 	return this->_plane;
 }
 
+//calculates random force and plane angle, draws the plane and adjusts reference time
 void Renderer::draw_plane(float current_time, float human_force) {
 	float random_force = this->_plane->get_random_force_applier()->calculate_current_force(current_time - this->_reference_time);
 	this->_plane->calculate_plane_angle(current_time - this->_reference_time, human_force, random_force);

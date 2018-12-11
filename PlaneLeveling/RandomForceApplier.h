@@ -6,14 +6,16 @@ class RandomForceApplier {
 private:
 	float _min_period;
 	float _max_period;
-	float _min_amplitude;
-	float _max_amplitude;
+	float _min_amplitude; // have min be <0 and max be >0 if you don't want the initial direction of the force
+	float _max_amplitude; // to alternate after every period
 	float _current_period;
 	float _current_amplitude;
-	float _reference_time;
-	float _passed_time;
+	float _reference_time; // will probably be removed in the future
+	float _passed_time; //time passed since the last calculation, needs to be reset after the period ends
 public:
 	RandomForceApplier(float min_period, float max_period, float _min_amplitude, float max_amplitude);
+	// calculates the random force at the given moment
+	// after every period, _passed_time will be reset to 0
 	float calculate_current_force(float delta_time);
 	float get_min_period();
 	float get_max_period();

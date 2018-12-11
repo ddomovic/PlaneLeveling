@@ -9,6 +9,8 @@ RandomForceApplier::RandomForceApplier(float min_period, float max_period, float
 	this->_reference_time = (float)glutGet(GLUT_ELAPSED_TIME) / 1000.0;
 }
 
+// calculates the random force at the given moment
+// after every period, _passed_time will be reset to 0
 float RandomForceApplier::calculate_current_force(float delta_time) {
 	this->_passed_time += delta_time;
 	if (this->_passed_time > this->_current_period) {

@@ -2,6 +2,7 @@
 #include "RandomForceApplier.h"
 #include "Plane.h"
 
+//use this one if there's no plane sprite file, otherwise use the second one
 Plane::Plane(int plane_size, int plane_mass, RandomForceApplier *rfa) : _plane_angle(0), _plane_size(plane_size), _plane_mass(plane_mass), 
 			_angular_velocity(0), _rfa(rfa), _plane_sprite_file("") {
 }
