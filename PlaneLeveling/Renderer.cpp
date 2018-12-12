@@ -2,10 +2,13 @@
 #include <GL/glut.h>
 #include "RandomForceApplier.h"
 #include "Plane.h"
+#include "Timer.h"
 #include "Renderer.h"
 
-Renderer::Renderer(Plane *plane) : _plane(plane) {
+Renderer::Renderer(int screen_width, int screen_height, Plane *plane) : _screen_width(screen_width),
+		_screen_height(screen_height), _plane(plane) {
 	this->_reference_time = (float)glutGet(GLUT_ELAPSED_TIME)/1000.0;
+	this->_timer = new Timer();
 }
 
 float Renderer::get_reference_time() {
@@ -20,10 +23,15 @@ Plane* Renderer::get_plane() {
 	return this->_plane;
 }
 
+Timer* Renderer::get_timer() {
+	return this->_timer;
+}
+
 //calculates random force and plane angle, draws the plane and adjusts reference time
 void Renderer::draw_plane(float current_time, float human_force) {
 	float random_force = this->_plane->get_random_force_applier()->calculate_current_force(current_time - this->_reference_time);
 	this->_plane->calculate_plane_angle(current_time - this->_reference_time, human_force, random_force);
+	this->_timer->draw_timer(0.7*this->_screen_width/2.0, 0.5*this->_screen_height/2.0);
 	glPushMatrix();
 	glColor3f(1.0, 0.0, 0.0);
 	glRotatef(this->_plane->get_plane_angle(), 0.0, 0.0, 1.0);
