@@ -10,10 +10,10 @@ RandomForceApplier::RandomForceApplier(float min_period, float max_period, float
 }
 
 // calculates the random force at the given moment
-// after every period, _passed_time will be reset to 0
+// after every half-period, _passed_time will be reset to 0
 float RandomForceApplier::calculate_current_force(float delta_time) {
 	this->_passed_time += delta_time;
-	if (this->_passed_time > this->_current_period) {
+	if (this->_passed_time > this->_current_period/2.0) {
 		this->_current_amplitude = this->_min_amplitude + static_cast<float> (rand() * (this->_max_amplitude - this->_min_amplitude)) / (static_cast<float> (RAND_MAX));
 		this->_current_period = this->_min_period + static_cast<float> (rand() * (this->_max_period - this->_min_period)) / (static_cast<float> (RAND_MAX));
 		this->_passed_time = 0;

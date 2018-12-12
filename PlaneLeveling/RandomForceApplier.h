@@ -15,7 +15,7 @@ private:
 public:
 	RandomForceApplier(float min_period, float max_period, float _min_amplitude, float max_amplitude);
 	// calculates the random force at the given moment
-	// after every period, _passed_time will be reset to 0
+	// after every half-period, _passed_time will be reset to 0
 	float calculate_current_force(float delta_time);
 	float get_min_period();
 	float get_max_period();
