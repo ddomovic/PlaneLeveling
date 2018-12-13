@@ -18,7 +18,7 @@ float RandomForceApplier::calculate_current_force(float delta_time) {
 		if (rand() % 2 == 1) {
 			this->_current_amplitude = 1;
 		}
-		else if (rand() % 2 == 0) {
+		else {
 			this->_current_amplitude = -1;
 		}
 		this->_current_amplitude *= this->_min_amplitude + static_cast<float> (rand() * (this->_max_amplitude - this->_min_amplitude)) / (static_cast<float> (RAND_MAX));
