@@ -6,8 +6,8 @@ class RandomForceApplier {
 private:
 	float _min_period;
 	float _max_period;
-	float _min_amplitude; // have min be <0 and max be >0 if you don't want the initial direction of the force
-	float _max_amplitude; // to alternate after every period
+	float _min_amplitude; // it is recommended to have _min_amplitude and _max_amplitude be > 0
+	float _max_amplitude;
 	float _current_period;
 	float _current_amplitude;
 	float _reference_time; // will probably be removed in the future
