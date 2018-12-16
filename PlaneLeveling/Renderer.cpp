@@ -32,6 +32,12 @@ void Renderer::draw_plane(float current_time, float human_force) {
 	float random_force = this->_plane->get_random_force_applier()->calculate_current_force(current_time - this->_reference_time);
 	this->_plane->calculate_plane_angle(current_time - this->_reference_time, human_force, random_force);
 	this->_timer->draw_timer(0.7*this->_screen_width/2.0, 0.5*this->_screen_height/2.0);
+	std::string current_human_force = "FORCE:" + std::to_string(human_force);
+	int len = (int)current_human_force.length();
+	glRasterPos2d(-0.7*this->_screen_width / 2.0, 0.5*this->_screen_height / 2.0);
+	for (int i = 0; i < len; i++) {
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, current_human_force[i]);
+	}
 	glPushMatrix();
 	glColor3f(1.0, 0.0, 0.0);
 	glRotatef(this->_plane->get_plane_angle(), 0.0, 0.0, 1.0);
