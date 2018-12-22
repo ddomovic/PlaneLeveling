@@ -44,6 +44,10 @@ void Renderer::draw_plane(float current_time, float human_force) {
 	glBegin(GL_LINES);
 	glVertex2f(-1 * this->_plane->get_plane_size()/2.0, 0);
 	glVertex2f(this->_plane->get_plane_size()/2.0, 0);
+	glVertex2f(this->_plane->get_plane_size() / 20.0, 0);
+	glVertex2f(0, sqrt(2) * this->_plane->get_plane_size() / 20.0);
+	glVertex2f(-1 * this->_plane->get_plane_size() / 20.0, 0);
+	glVertex2f(0, sqrt(2) * this->_plane->get_plane_size() / 20.0);
 	glEnd();
 	glColor3f(0.0, 0.0, 1.0);
 	glBegin(GL_LINES);
