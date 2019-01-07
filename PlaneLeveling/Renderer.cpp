@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <iostream>
 #include <GL/glut.h>
 #include "RandomForceApplier.h"
 #include "Plane.h"
@@ -6,7 +7,7 @@
 #include "Renderer.h"
 
 Renderer::Renderer(int screen_width, int screen_height, Plane *plane) : _screen_width(screen_width),
-		_screen_height(screen_height), _plane(plane) {
+		_screen_height(screen_height), _plane(plane), _points(0) {
 	this->_reference_time = (float)glutGet(GLUT_ELAPSED_TIME)/1000.0;
 	this->_timer = new Timer();
 }
@@ -31,8 +32,17 @@ Timer* Renderer::get_timer() {
 void Renderer::draw_plane(float current_time, float human_force) {
 	float random_force = this->_plane->get_random_force_applier()->calculate_current_force(current_time - this->_reference_time);
 	this->_plane->calculate_plane_angle(current_time - this->_reference_time, human_force, random_force);
+	this->_plane->set_plane_angle(fmod(this->_plane->get_plane_angle(), 360));
 	this->_timer->draw_timer(0.7*this->_screen_width/2.0, 0.5*this->_screen_height/2.0);
-	std::string current_human_force = "FORCE:" + std::to_string(human_force);
+	
+	if (fabs(this->_plane->get_plane_angle()) > 180.0f) {
+		this->_points += (360.0f - fabs(this->_plane->get_plane_angle())) / 100.0f;
+	}
+	else {
+		this->_points += (fabs(this->_plane->get_plane_angle())) / 100.0f;
+	}
+	
+	std::string current_human_force = "POINTS:" + std::to_string(this->_points);
 	int len = (int)current_human_force.length();
 	glRasterPos2d(-0.7*this->_screen_width / 2.0, 0.5*this->_screen_height / 2.0);
 	for (int i = 0; i < len; i++) {

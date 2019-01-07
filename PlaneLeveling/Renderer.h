@@ -7,6 +7,7 @@ private:
 	float _reference_time;
 	Plane *_plane;
 	class Timer *_timer;
+	float _points;
 public:
 	Renderer(int screen_width, int screen_height, Plane *plane);
 	float get_reference_time();
