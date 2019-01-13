@@ -96,4 +96,5 @@ void PlayState::reset() {
 	this->_renderer->set_points(0.0f);
 	this->_renderer->set_reference_time((float)glutGet(GLUT_ELAPSED_TIME) / 1000.0);
 	this->_human_force = 0.0f;
+	srand(5);
 }
