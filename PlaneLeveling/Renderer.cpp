@@ -45,10 +45,10 @@ void Renderer::draw_plane(float current_time, float human_force) {
 	this->_timer->draw_timer(0.7*this->_screen_width/2.0, 0.5 * this->_screen_height - 40);
 	
 	if (fabs(this->_plane->get_plane_angle()) > 180.0f) {
-		this->_points += (360.0f - fabs(this->_plane->get_plane_angle())) / 100.0f;
+		this->_points += (360.0f - fabs(this->_plane->get_plane_angle())) / 60.0f;
 	}
 	else {
-		this->_points += (fabs(this->_plane->get_plane_angle())) / 100.0f;
+		this->_points += (fabs(this->_plane->get_plane_angle())) / 60.0f;
 	}
 
 	glColor3f(1.0, 0.0, 0.0);
